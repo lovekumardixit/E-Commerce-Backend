@@ -1,0 +1,1 @@
+UPDATE users SET gender = 'Male' WHERE gender IS NULL;
