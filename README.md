@@ -1,5 +1,5 @@
 # Secure E-commerce REST API 🚀
-Developed by **Love Dixit** | BCA Final Year, **GLA University**
+Developed by **Lav K. Dixit** | BCA Final Year, **GLA University**
 
 ## 🛠 How to Run this Project
 
