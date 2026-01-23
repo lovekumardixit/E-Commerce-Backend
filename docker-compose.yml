@@ -19,7 +19,7 @@ services:
       interval: 10s
 
   app:
-    build: .
+    image: 89542005/my-api:v1
     container_name: springboot-api
     restart: on-failure
     ports:
