@@ -1,20 +1,37 @@
-# Secure E-commerce REST API 🚀
-Developed by **Lav K. Dixit** | BCA Final Year, **GLA University**
+# Enterprise E-Commerce Backend (Microservices)
 
-## 🛠 How to Run this Project
+Production-oriented Java 17 + Spring Boot microservices e-commerce backend with security, eventing, caching, and CI/CD.
 
-### Option 1: Using Docker Compose (Recommended)
-You don't need to install Java or MySQL manually. Just run:
-1. Clone the repo: `git clone https://github.com/lovekumardixit/springboot-docker-api.git`
-2. Run: `docker-compose up --build`
-3. Access: `http://localhost:8080/api/users`
+## Services
+- Config Server
+- Discovery Service (Eureka)
+- API Gateway
+- User Service (JWT auth + RBAC)
+- Product Service (MongoDB + Redis)
+- Order Service (MySQL + Kafka)
+- Payment Service (MySQL + Kafka)
 
-### Option 2: Manual Build (For Developers)
-If you want to build the JAR manually:
-1. Requirements: Java 17+, Maven 3.x
-2. Command: `mvn clean package`
-3. The JAR will be generated in the `/target` directory.
+## Tech Stack
+Java 17, Spring Boot, Spring Security, MySQL, MongoDB, Redis, Kafka, Docker, GitHub Actions.
 
-## 📦 Links
-- **Docker Hub Image:** [89542005/my-api:v1](https://hub.docker.com/r/89542005/my-api)
-- **Technologies:** Spring Boot, MySQL, Docker, Flyway
+## Architecture Highlights
+- Clean layered service structure (`controller`, `service`, `repository`, `dto`, `entity`, `config`).
+- JWT + refresh-token design (starter endpoints included).
+- Event-driven workflow stubs for order/payment/inventory notifications using Kafka.
+- Redis strategy for product/session caching.
+- Health checks via Spring Actuator.
+
+## Run Locally
+```bash
+docker compose up -d
+mvn clean verify
+```
+
+## CI/CD
+Pipeline at `.github/workflows/ci-cd.yml` runs build/test and container build on push/PR.
+
+## API Docs
+Each service should expose OpenAPI at `/swagger-ui.html` after adding service-level springdoc dependency and controllers.
+
+## AI Recommendations
+Integrate OpenAI/Gemini in Product Service recommendation module using user behavior events from Kafka.
