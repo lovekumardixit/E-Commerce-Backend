@@ -47,3 +47,17 @@ mvn -B -ntp clean verify
 2. Add Flyway migrations for user/order/payment schemas.
 3. Add Mongo indexes for product search patterns.
 4. Add full observability (structured logs, tracing, metrics dashboards).
+
+## Event Choreography Blueprint
+- `order.created` -> payment-service (`payment.initiate`)
+- `payment.success` -> order-service (`PAID`) + product-service (`inventory.deduct`)
+- `order.paid` -> notification-service (email/sms dispatch)
+- `refund.requested` -> payment-service + product-service rollback + notification-service
+
+## Security Hardening Included
+- Validation + global exception handling baseline in user-service.
+- Access/refresh token rotation endpoints scaffolded.
+- Password hashing via BCrypt in user-service registration flow.
+
+## AI Recommendation Service
+A dedicated `recommendation-service` module is included for OpenAI/Gemini integration, trending, and cross-sell logic.
