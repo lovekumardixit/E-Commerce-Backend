@@ -1,5 +1,9 @@
 package com.ecommerce.user.controller;
 
+import com.ecommerce.user.dto.RegisterRequest;
+import com.ecommerce.user.entity.User;
+import com.ecommerce.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
@@ -7,9 +11,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    private final UserService userService;
+
+    public AuthController(UserService userService) { this.userService = userService; }
+
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> payload) {
-        return ResponseEntity.ok(Map.of("message", "User registered", "email", payload.getOrDefault("email", "")));
+    public ResponseEntity<User> register(@Valid @RequestBody RegisterRequest payload) {
+        return ResponseEntity.ok(userService.register(payload));
     }
 
     @PostMapping("/login")
