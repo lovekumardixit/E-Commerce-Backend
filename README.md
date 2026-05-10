@@ -34,7 +34,7 @@ Production-focused microservices backend inspired by Amazon/Flipkart architectur
 ```bash
 docker compose up -d
 mvn -B -ntp clean verify
-```
+````
 
 ## CI/CD
 `.github/workflows/ci-cd.yml`:
